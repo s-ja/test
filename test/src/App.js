@@ -7,37 +7,41 @@ import data from './data'
 function App() {
 
   let [product, setProduct] = useState(data);
+  let saled_price = product[0].price / product[0].sale_percent * 100;
+  let [initial_count, setInital_count] = useState(1);
+  let final_price = saled_price*initial_count
 
   return (
     <div className="App">
       <article className="product_container padding_16">
             <div className="product">
                 <div className="product_img"><img src={process.env.PUBLIC_URL +'/product.png'} alt='래피젠 코로나 자가 검사 키트 2개입X1박스' className="product_img"/></div>
-                <h5 className="product_title"> 래피젠 코로나 자가 검사 키트<br/>2개입X1박스</h5>
+                {/* <h5 className="product_title"> 래피젠 코로나 자가 검사 키트<br/>2개입X1박스</h5> */}
+                <h5 className="product_title">{product[0].title}</h5>
                 <p className="product_price under_line padding_16">
                   <div className='salePercent'>
-                    <span className='a11y'>할인율</span>
+                    <span className='a11y'>{product[0].sale_percent}</span>
                     <span>88%</span>
                   </div>
                   <div class="price">
                     <div class="original_price">
                       <span className='a11y'>정상가</span>
-                      <span>56,760원</span>
+                      <span>{product[0].price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>
                     </div>
                     <div class="sale_price">
                       <span className='a11y'>판매가</span>
-                      <span>6,370원</span>
+                      <span>{saled_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>
                     </div>
                   </div>
                 </p>
                 <p className='product_delivery under_line padding_16'>
                   <div class="delivery_fee">
                     <div>택배배송</div>
-                    <div>3000원</div>
+                    <div>{product[0].delivery.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</div>
                     <div>(주문시 결제)</div>
                   </div>
                   <div className='delivery_per'>
-                    10개마다 부과
+                    {product[0].delivery_per}개마다 부과
                   </div>
                 </p>
                 <p className='product_number under_line padding_16'>
@@ -55,8 +59,8 @@ function App() {
                     </button>
                     </div>
                   <div className='number_and_price'>
-                    <div className='final_number'>총 수량 1개</div>
-                    <div className='final_price'>6,370원</div>
+                    <div className='final_number'>총 수량 {initial_count}개</div>
+                    <div className='final_price'>{final_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</div>
                   </div>
                 </p>
                 <p className='product_purchase'>

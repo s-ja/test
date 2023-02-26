@@ -1,7 +1,7 @@
 let data = [
     {
       id : 0,
-      title : "래피젠 코로나 자가 검사 키트 2개입X1박스",
+      title : `래피젠 코로나 자가 검사 키트 2개입X1박스`,
       sale_percent : 88,
       price : 56760,
       delivery: 3000,
